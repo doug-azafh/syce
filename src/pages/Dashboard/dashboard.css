@@ -1,0 +1,28 @@
+body{
+    background-color: #fff;
+}
+
+.um{
+    background-color: aqua;
+    margin-top: 7vh;
+    width: 90%;
+    margin-left: 14vh;
+    border-radius: 15px;
+}
+
+.dois{
+    background-color: blueviolet;
+    margin-top: 7vh;
+    width: 83%;
+    margin-left: 28vh;
+    border-radius: 15px;
+
+}
+
+.cont-form{    
+    margin-top: 15px;
+    display: flex;    
+    height: 85vh;
+    justify-content: start;
+    align-items: center;
+}
