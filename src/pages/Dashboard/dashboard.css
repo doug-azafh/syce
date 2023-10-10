@@ -5,13 +5,14 @@ body{
 .um{
     background-color: aqua;
     margin-top: 7vh;
-    width: 90%;
+    width: 100%;
     margin-left: 14vh;
     border-radius: 15px;
 }
 
 .dois{
-    background-color: blueviolet;
+    border-color: blueviolet;
+    border-style: solid;
     margin-top: 7vh;
     width: 83%;
     margin-left: 28vh;
@@ -22,7 +23,8 @@ body{
 .cont-form{    
     margin-top: 15px;
     display: flex;    
-    height: 85vh;
+    height: 100%;
+    width: 100%;
     justify-content: start;
     align-items: center;
 }

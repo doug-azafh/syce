@@ -196,19 +196,8 @@ ul {
     color: #fff;
     cursor: pointer;
   }
-  
-  ul > li {
-    margin: 15px;
-    display: flex;
-    align-items: center;
-    max-width: 170px;
-    flex-wrap: wrap;
-    color: #fff;
-  }
-  
-  li svg {
-    color: #fff;
-    margin: 5px;
-  }
 
-  
+ul > a {
+    margin-top: 5px;
+}  
+ 

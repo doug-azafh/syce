@@ -1,0 +1,20 @@
+.cad {
+    border-style: solid;
+    border-color: brown;
+    border-radius: 15px;
+    width: 80%;
+    margin-left: 30vh;
+    padding: 0.5rem;    
+    display: flex;
+    justify-content: space-between;
+    cursor: default;
+}
+
+.cad input{
+    margin: 5px;
+    cursor: pointer;
+}
+
+.cad label{
+    margin-right: 15px;
+}

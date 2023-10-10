@@ -9,6 +9,10 @@ import {
   FiLogOut,
   FiPlus,
   FiSettings,
+  FiDollarSign,
+  FiShoppingCart,
+  FiShoppingBag,
+  FiUsers,
 } from "react-icons/fi";
 import "./header.css";
 
@@ -28,8 +32,14 @@ export default function Header() {
             <FiClipboard color="#FFF" size={20} />
             Controle
             <ul>
-              <a>Compras</a>
-              <a>Vendas</a>
+              <Link to="#">
+                <FiShoppingCart color="#FFF" size={20} />
+                Compras
+              </Link>
+              <Link to="#">
+                <FiDollarSign color="#FFF" size={20} />
+                Vendas
+              </Link>
             </ul>
           </div>
 
@@ -37,8 +47,14 @@ export default function Header() {
             <FiPlus color="#FFF" size={20} />
             Cadastro
             <ul>
-              <a>Fornecedor</a>
-              <a>Produto</a>
+              <Link to="/supplier">
+                <FiUsers color="#FFF" size={20} />
+                Fornecedor
+              </Link>
+              <Link to="#">
+                <FiShoppingBag color="#FFF" size={20} />
+                Produto
+              </Link>
             </ul>
           </div>
           <span>
@@ -73,12 +89,41 @@ export default function Header() {
               <FiMenu color="#FFF" size={20} />
             </button>
           </div>
-          <Link to="#">
+          <div className="principal">
             <FiClipboard color="#FFF" size={20} />
-          </Link>
-          <Link to="#">
+            <ul>
+              <Link
+                to="#"
+                style={{ padding: 0, paddingTop: 15, marginBottom: 15 }}
+              >
+                <FiShoppingCart color="#FFF" size={20} />
+              </Link>
+              <Link
+                to="#"
+                style={{ padding: 0, paddingTop: 15, marginBottom: 15 }}
+              >
+                <FiDollarSign color="#FFF" size={20} />
+              </Link>
+            </ul>
+          </div>
+
+          <div className="principal">
             <FiPlus color="#FFF" size={20} />
-          </Link>
+            <ul>
+              <Link           
+                to="/supplier"
+                style={{ padding: 0, paddingTop: 15, marginBottom: 15 }}
+              >
+                <FiUsers color="#FFF" size={20} />
+              </Link>
+              <Link
+                to="#"
+                style={{ padding: 0, paddingTop: 15, marginBottom: 15 }}
+              >
+                <FiShoppingBag color="#FFF" size={20} />
+              </Link>
+            </ul>
+          </div>
           <span>
             <Link to="#">
               <FiAlertOctagon color="#d8bb18" size={20} />

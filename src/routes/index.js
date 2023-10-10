@@ -3,6 +3,7 @@ import Private from "./Private";
 import SingIn from "../pages/SingIn";
 import SingUp from "../pages/SingUp";
 import Dashboard from "../pages/Dashboard";
+import Supplier from "../pages/Supplier";
 
 function RoutesApp() {
   return (
@@ -14,6 +15,14 @@ function RoutesApp() {
         element={
           <Private>
             <Dashboard />
+          </Private>
+        }
+      />
+      <Route
+        path="/supplier"
+        element={
+          <Private>
+            <Supplier />
           </Private>
         }
       />

@@ -23,7 +23,7 @@ export default function SingIn() {
     <div className="main">
       <div className="login">
         <div className="login-area"></div>
-        <form onSubmit={handleSignIn}>
+        <form className="form-sing" onSubmit={handleSignIn}>
           <h1>Entrar</h1>
           <input
             type="text"

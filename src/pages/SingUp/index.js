@@ -44,14 +44,14 @@ export default function SingUp() {
     ) {
       await singUp(email, password, name, cpf, nascimento);
     }
-  }  
+  }
 
   return (
     <div className="main">
       <div className="login">
         <div className="login-area"></div>
 
-        <form onSubmit={handleSubmit}>
+        <form className="form-sing" onSubmit={handleSubmit}>
           <h1>Cadastre-se</h1>
           <label>Nome:</label>
           <input
