@@ -3,7 +3,7 @@ body{
 }
 
 .um{
-    background-color: aqua;
+    background-color: #00ffff;
     margin-top: 7vh;
     width: 100%;
     margin-left: 14vh;
@@ -11,7 +11,7 @@ body{
 }
 
 .dois{
-    border-color: blueviolet;
+    border-color: #8a2be2;
     border-style: solid;
     margin-top: 7vh;
     width: 83%;

@@ -1,48 +1,42 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { soLetras, soNumeros } from "../../schema/validation.js";
 
 export default function SingUp() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [cpf, setCPF] = useState("");
-  const [nascimento, setNascimento] = useState();
+  const name = useRef("");
+  const email = useRef("");
+  const cpf = useRef("");
+  const nascimento = useRef();
 
-  const [password, setPassword] = useState("");
-  const [passwordC, setPasswordC] = useState("");
+  const [password, setPassword] = useState(null);
+  const [passwordC, setPasswordC] = useState(null);
 
   const { singUp, loadingAuth } = useContext(AuthContext);
-
-  /*const schema = z.object({
-    name: z
-      .string()
-      .nonempty("O nome é obrigatório.")
-      .regex(/^[A-Za-z]+$/i, "Só letras são permitidas"),
-    email: z
-      .string()
-      .email("Digite um e-mail válido.")
-      .nonempty("O e-mail é obrigatório"),
-    CPF: z
-      .string()
-      .nonempty("O CPF é obrigatório.")
-      .regex("^[0-9]+$", "Só números são permitidos"),
-    nascimento: z.date().nullable("A data de nascimento é obrigatória."),
-  });*/
 
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (!soLetras(name.current.value, name.current.name)) {
+      name.current.focus();
+    } else if (!soNumeros(cpf.current.value, cpf.current.name)) {
+      cpf.current.focus();
+    }
+
     if (
-      name !== "" &&
-      email !== "" &&
+      name.current.value !== "" &&
+      email.current.value !== "" &&
       password !== "" &&
-      cpf !== "" &&
-      nascimento !== ""
+      cpf.current.value !== "" &&
+      nascimento.current.value !== ""
     ) {
-      await singUp(email, password, name, cpf, nascimento);
+      await singUp(
+        email.current.value,
+        password,
+        name.current.value,
+        cpf.current.value,
+        nascimento.current.value
+      );
     }
   }
 
@@ -55,39 +49,40 @@ export default function SingUp() {
           <h1>Cadastre-se</h1>
           <label>Nome:</label>
           <input
+            ref={name}
             type="text"
             placeholder="Nome completo"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="nome"
           />
 
           <label>E-mail:</label>
           <input
+            ref={email}
             type="text"
             placeholder="email@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
           />
 
           <div>
             <label>
               CPF:
               <input
+                ref={cpf}
                 className="ajust"
                 type="text"
                 placeholder="XXX.XXX.XXX-XX"
-                value={cpf}
-                onChange={(e) => setCPF(e.target.value)}
+                name="CPF"
               />
             </label>
 
             <label>
               Nascimento:
               <input
+                ref={nascimento}
                 type="date"
                 placeholder="Data de Nascimento"
-                value={nascimento}
-                onChange={(e) => setNascimento(e.target.value)}
+                name="data de nascimento"
+                style={{ marginLeft: 5 }}
               />
             </label>
           </div>
@@ -98,6 +93,7 @@ export default function SingUp() {
               type="password"
               placeholder="********"
               value={password}
+              id="password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
@@ -111,7 +107,7 @@ export default function SingUp() {
               onChange={(e) => setPasswordC(e.target.value)}
             />
           </label>
-          {password !== passwordC && password !== "" && passwordC !== "" ? (
+          {password !== "" && passwordC !== "" && password !== passwordC ? (
             <span className="error">As senhas não conferem!</span>
           ) : (
             <div></div>

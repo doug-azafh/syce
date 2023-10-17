@@ -1,0 +1,37 @@
+.form-body{
+    margin-top: 25px;
+    border-style: solid;
+    border-color: brown;
+    border-radius: 15px;
+    width: 70%;
+    height: 90%;
+    margin-left: 30vh;
+    padding: 0.5rem;    
+    display: flex;
+    justify-content: space-between;
+    cursor: default;
+}
+
+.form-body input{
+    margin: 10px;
+    padding: 10px;
+    margin-left: 30px;
+    border-radius: 15px;
+    border-style: solid;
+}
+
+.ms-1{
+    width: 100%;
+}
+
+.ms-2{
+    width: 70%;
+}
+
+.ms-3{
+    width: 30%;
+}
+
+.ms-6{
+    width: 15%;
+}

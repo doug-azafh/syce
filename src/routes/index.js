@@ -4,6 +4,7 @@ import SingIn from "../pages/SingIn";
 import SingUp from "../pages/SingUp";
 import Dashboard from "../pages/Dashboard";
 import Supplier from "../pages/Supplier";
+import Header from "../components/Header";
 
 function RoutesApp() {
   return (
@@ -14,6 +15,7 @@ function RoutesApp() {
         path="/dashboard"
         element={
           <Private>
+            <Header />
             <Dashboard />
           </Private>
         }
@@ -22,6 +24,7 @@ function RoutesApp() {
         path="/supplier"
         element={
           <Private>
+            <Header />
             <Supplier />
           </Private>
         }
