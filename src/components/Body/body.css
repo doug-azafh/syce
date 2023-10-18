@@ -1,37 +1,60 @@
 .form-body{
     margin-top: 25px;
-    border-style: solid;
-    border-color: brown;
+    border-style: none;    
+    background-color: #eaeaec;
     border-radius: 15px;
-    width: 70%;
+    width: 60%;
     height: 90%;
-    margin-left: 30vh;
-    padding: 0.5rem;    
+    margin-left: 20%;
+    padding: 1rem;    
     display: flex;
     justify-content: space-between;
     cursor: default;
 }
 
+.form-body label{
+    margin: 3px;
+}
+
 .form-body input{
-    margin: 10px;
-    padding: 10px;
-    margin-left: 30px;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 15px;
+    border-style: solid;
+    margin-bottom: 8px;
+}
+
+.form-body fieldset{
+    border-radius: 15px;
+}
+
+.form-body select{
+    padding: 8px;
+    margin: 5px;
     border-radius: 15px;
     border-style: solid;
 }
 
 .ms-1{
-    width: 100%;
+    width: 90vh;
 }
 
 .ms-2{
-    width: 70%;
+    width: 60vh;
 }
 
 .ms-3{
-    width: 30%;
+    width: 28vh;
 }
 
 .ms-6{
-    width: 15%;
+    width: 15vh;
+}
+
+
+.btn-form{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    margin: 5px;
 }

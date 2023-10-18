@@ -8,8 +8,8 @@ export default function Supplier() {
     <>
       <div>
         <fieldset className="cad">
-          <legend>Tipo de fornecedor:</legend>
           <div>
+            <legend>Tipo de fornecedor:</legend>
             <input
               type="radio"
               id="cpf"
@@ -31,7 +31,7 @@ export default function Supplier() {
         </fieldset>
       </div>
       <form>
-        <Body content={tipoFor}></Body>
+        {tipoFor !== null ? <Body content={tipoFor}></Body> : <div></div>}
       </form>
     </>
   );

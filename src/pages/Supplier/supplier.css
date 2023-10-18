@@ -1,13 +1,19 @@
 .cad {
-    border-style: solid;
-    border-color: brown;
+    border-style: none;
+    background-color: #eaeaec;
     border-radius: 15px;
-    width: 80%;
-    margin-left: 30vh;
+    width: 60%;
+    margin-left: 20%;
     padding: 0.5rem;    
     display: flex;
     justify-content: space-between;
     cursor: default;
+}
+
+.cad legend{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px;
 }
 
 .cad input{
@@ -17,4 +23,13 @@
 
 .cad label{
     margin-right: 15px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{    
+  background-color: #1CB4D4;
 }

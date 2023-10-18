@@ -1,5 +1,45 @@
+import { useState, useEffect } from "react";
 import "./body.css";
+import axios from "axios";
+
 export default function Body({ children, content }) {
+  const [uf, setUf] = useState("AC");
+  const [listUf, setListUf] = useState([]);
+  const [city, setCity] = useState("");
+  const [listCity, setListCity] = useState([]);
+
+  function loadUf() {
+    let url = "https://servicodados.ibge.gov.br/";
+    url = url + "api/v1/localidades/estados";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        data.sort((a, b) => a.nome.localeCompare(b.nome));
+        setListUf([...data]);
+      });
+  }
+
+  function loadCity(id) {
+    if (id !== null) {
+      let url = "https://servicodados.ibge.gov.br/api/v1/";
+      url = url + `localidades/estados/${id}/municipios`;
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          data.sort((a, b) => a.nome.localeCompare(b.nome));
+          setListCity([...data]);
+        });
+    }
+  }
+  useEffect(() => {
+    loadUf();
+  }, []);
+  useEffect(() => {
+    if (uf) {
+      loadCity(uf);
+    }
+  }, [uf]);
+
   return (
     <div className="form-body">
       <form>
@@ -47,7 +87,7 @@ export default function Body({ children, content }) {
             <label>Nome Fantasia:</label>
             <input
               type="text"
-              placeholder="Razão Social"
+              placeholder="Nome Fantasia"
               name="nome"
               className="ms-1"
             />
@@ -69,13 +109,17 @@ export default function Body({ children, content }) {
             <br />
 
             <label>Site:</label>
-            <input type="url" className="ms-2" />
+            <input
+              type="url"
+              className="ms-2"
+              placeholder="www.seusite.com.br"
+            />
           </>
         )}
 
         <br />
         <label>E-mail:</label>
-        <input type="email" className="ms-2" />
+        <input type="email" className="ms-2" placeholder="email@email.com" />
         <br />
 
         <label>CEP:</label>
@@ -83,21 +127,44 @@ export default function Body({ children, content }) {
 
         <br />
 
-        <label>Endereço:</label>
-        <input type="text" className="ms-3" />
+        <>
+          <label>Endereço:</label>
+          <input type="text" className="ms-2" />
 
-        <label>Número:</label>
-        <input type="text" className="ms-6" />
+          <label>Número:</label>
+          <input type="text" className="ms-6" />
+        </>
         <br />
 
         <label>Bairro:</label>
         <input type="text" className="ms-3" />
 
-        <label>Cidade:</label>
-        <input type="text" className="ms-3" />
-
         <label>Estado:</label>
-        <input type="text" className="ms-3" />
+        <select
+          className="ms-3"
+          value={uf}
+          onChange={(e) => setUf(e.target.value)}
+          defaultValue={"Selecione a UF"}
+        >
+          {listUf.map((a, b) => (
+            <option value={a.id} defaultValue={"Selecione a UF"}>
+              {a.sigla} - {a.nome}
+            </option>
+          ))}
+        </select>
+
+        <label>Cidade:</label>
+        <select
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          defaultValue={"Selecione um cidade"}
+        >
+          {listCity.map((a, b) => (
+            <option value={a.sigla} defaultValue={"Selecione um cidade"}>
+              {a.nome}
+            </option>
+          ))}
+        </select>
         <br />
 
         <label>Telefone:</label>
@@ -105,7 +172,10 @@ export default function Body({ children, content }) {
 
         <label>Celular:</label>
         <input type="text" className="ms-3" />
-        <button className="ms-3">Cadastrar</button>
+
+        <div className="btn-form">
+          <button className="ms-3">Cadastrar</button>
+        </div>
       </form>
     </div>
   );
