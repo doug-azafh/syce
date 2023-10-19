@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
     loadUser();
   }, []);
 
-  async function statusMenu(){
+  async function statusMenu() {
     setStateMenu(!stateMenu);
   }
 
@@ -100,6 +100,52 @@ function AuthProvider({ children }) {
       });
   }
 
+  async function cadFornF(
+    tipo,
+    nome,
+    data,
+    cpf,
+    rg,
+    gen,
+    email,
+    cep,
+    end,
+    num,
+    bair,
+    uf,
+    cidade,
+    tel,
+    cel
+  ) {
+    
+    let uid = data.user.uid;
+    console.log("aqui");
+    await setDoc(doc(db, "forn", uid), {
+      tipo: tipo,
+      nome: nome,
+      nascimento: data,
+      cpf: cpf,
+      rg: rg,
+      genero: gen,
+      email: email,
+      cep: cep,
+      endereco: end,
+      numero: num,
+      bairro: bair,
+      uf: uf,
+      cidade: cidade,
+      telefone: tel,
+      celular: cel,
+    })
+      .then(() => {
+        toast.success("Fornecedor cadastrado.");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Erro ao cadastrar.");
+      });
+  }
+
   function storageUser(data) {
     localStorage.setItem("@syce", JSON.stringify(data));
   }
@@ -123,7 +169,8 @@ function AuthProvider({ children }) {
         storageUser,
         setUser,
         statusMenu,
-        stateMenu        
+        stateMenu,
+        cadFornF,
       }}
     >
       {children}

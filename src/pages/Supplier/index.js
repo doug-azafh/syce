@@ -17,7 +17,7 @@ export default function Supplier() {
               value="cpf"
               onChange={(e) => setTipoFor(e.target.value)}
             />
-            <label for="cpf">Física</label>
+            <label htmlFor="cpf">Física</label>
 
             <input
               type="radio"
@@ -26,7 +26,7 @@ export default function Supplier() {
               value="cnpj"
               onChange={(e) => setTipoFor(e.target.value)}
             />
-            <label for="cnpj">Jurídica</label>
+            <label htmlFor="cnpj">Jurídica</label>
           </div>
         </fieldset>
       </div>

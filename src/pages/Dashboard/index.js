@@ -8,18 +8,7 @@ export default function Dashboard() {
   return (
     <div>
       <Header />
-      <>
-        <div className="main">
-          {stateMenu === true ? (
-            <div className="um">
-              <div className="cont-form">teste</div>
-            </div>
-          ) : (
-            <div className="dois">
-              <div className="cont-form">teste</div>
-            </div>
-          )}
-        </div>
+      <>        
       </>
     </div>
   );

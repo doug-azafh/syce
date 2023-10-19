@@ -1,21 +1,33 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth";
 import "./singin.css";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function SingIn() {
   const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  //const [password, setPassword] = useState("");
+  const password = useRef(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { singIn, loadingAuth } = useContext(AuthContext);
+
+  function toggleShow(e) {
+    e.preventDefault();
+    if (password.current.type === "password") {
+      setShowPassword(true);
+      password.current.type = "text";
+    } else {
+      setShowPassword(false);
+      password.current.type = "password";
+    }
+  }
 
   async function handleSignIn(e) {
     e.preventDefault();
 
     if ((user !== "") & (password !== "")) {
-      await singIn(user, password);
+      await singIn(user, password.current.value);
     }
   }
 
@@ -31,12 +43,13 @@ export default function SingIn() {
             value={user}
             onChange={(e) => setUser(e.target.value)}
           />
-          <input
-            type="password"
-            placeholder="********"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <form className="password">
+            <input ref={password} type="password" placeholder="********" />
+            <button onClick={(e) => toggleShow(e)}>
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </button>
+          </form>
+
           <button type="submit">
             {loadingAuth ? "Carregando..." : "Acessar"}
           </button>

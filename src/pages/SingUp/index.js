@@ -2,6 +2,7 @@ import { useState, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth";
 import { soLetras, soNumeros } from "../../schema/validation.js";
+import InputMask from 'react-input-mask';
 
 export default function SingUp() {
   const name = useRef("");
@@ -66,12 +67,13 @@ export default function SingUp() {
           <div>
             <label>
               CPF:
-              <input
+              <InputMask
                 ref={cpf}
                 className="ajust"
                 type="text"
                 placeholder="XXX.XXX.XXX-XX"
                 name="CPF"
+                mask="999.999.999-99"
               />
             </label>
 

@@ -1,12 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { AuthContext } from "../../contexts/auth";
 import "./body.css";
+import InputMask from "react-input-mask";
 import axios from "axios";
 
 export default function Body({ children, content }) {
+  const nome = useRef("");
+  const razaoS = useRef("");
+  const nomeFant = useRef("");
+  const data = useRef("");
+  const cpf = useRef("");
+  const rg = useRef("");
+  const cnpj = useRef("");
+  const inscEst = useRef("");
+  const sex = useRef("");
+  const site = useRef("");
+  const email = useRef("");
+  const cep = useRef("");
+  const end = useRef("");
+  const numEnd = useRef("");
+  const bairro = useRef("");
+  const tel = useRef("");
+  const cel = useRef("");
   const [uf, setUf] = useState("AC");
   const [listUf, setListUf] = useState([]);
   const [city, setCity] = useState("");
   const [listCity, setListCity] = useState([]);
+
+  const { cadFornF } = useContext(AuthContext);
 
   function loadUf() {
     let url = "https://servicodados.ibge.gov.br/";
@@ -40,36 +61,78 @@ export default function Body({ children, content }) {
     }
   }, [uf]);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log("aqui");
+    /*
+    e.preventDefault();
+    console.log("aqui");
+    await cadFornF(
+      content,
+      nome.current.value,
+      data.current.value,
+      cpf.current.value,
+      rg.current.value,
+      sex.current.value,
+      email.current.value,
+      cep.current.value,
+      end.current.value,
+      numEnd.current.value,
+      bairro.current.value,
+      uf,
+      city,
+      tel.current.value,
+      cel.current.value
+    );*/
+  }
+
   return (
     <div className="form-body">
-      <form>
+      <form onSubmit={handleSubmit}>
         {content === "cpf" ? (
           <>
             <label>Nome Completo:</label>
-            <input type="text" placeholder="Nome completo" className="ms-1" />
+            <input
+              type="text"
+              placeholder="Nome completo"
+              className="ms-1"
+              ref={nome}
+            />
             <br />
 
             <label>Data de Nascimento:</label>
-            <input type="date" className="ms-3" />
+            <input type="date" className="ms-3" ref={data} />
             <br />
 
             <label>CPF:</label>
-            <input type="text" placeholder="XXX.XXX.XXX-XX" className="ms-3" />
+            <InputMask
+              type="text"
+              placeholder="XXX.XXX.XXX-XX"
+              mask="999.999.999-99"
+              className="ms-3"
+              ref={cpf}
+            />
 
             <label>RG:</label>
-            <input type="text" placeholder="XX.XXX.XXX-X" className="ms-3" />
+            <InputMask
+              type="text"
+              placeholder="XX.XXX.XXX-X"
+              mask="99.999.999-99"
+              className="ms-3"
+              ref={rg}
+            />
 
             <fieldset>
               <legend>Sexo:</legend>
               <div>
-                <input type="radio" id="fem" value="fem" />
-                <label for="fem">Feminino</label>
+                <input type="radio" id="fem" value="fem" ref={sex} />
+                <label htmlFor="fem">Feminino</label>
 
-                <input type="radio" id="mas" value="mas" />
-                <label for="mas">Masculino</label>
+                <input type="radio" id="mas" value="mas" ref={sex} />
+                <label htmlFor="mas">Masculino</label>
 
-                <input type="radio" id="out" value="out" />
-                <label for="out">Outros</label>
+                <input type="radio" id="out" value="out" ref={sex} />
+                <label htmlFor="out">Outros</label>
               </div>
             </fieldset>
           </>
@@ -81,6 +144,7 @@ export default function Body({ children, content }) {
               placeholder="Razão Social"
               name="nome"
               className="ms-1"
+              ref={razaoS}
             />
             <br />
 
@@ -90,22 +154,31 @@ export default function Body({ children, content }) {
               placeholder="Nome Fantasia"
               name="nome"
               className="ms-1"
+              ref={nomeFant}
             />
             <br />
 
             <label>Data de Abertura:</label>
-            <input type="date" className="ms-3" />
+            <input type="date" className="ms-3" ref={data} />
             <br />
 
             <label>CNPJ:</label>
-            <input
+            <InputMask
               type="text"
               placeholder="XXX.XXX.XXX/XXXX-XX"
+              mask="999.999.999/9999-99"
               className="ms-3"
+              ref={cnpj}
             />
 
             <label>Inscrição Estadual:</label>
-            <input type="text" placeholder="XXX.XXX.XXX.XXX" className="ms-3" />
+            <InputMask
+              type="text"
+              placeholder="XXX.XXX.XXX.XXX"
+              className="ms-3"
+              mask="999.999.999.999"
+              ref={inscEst}
+            />
             <br />
 
             <label>Site:</label>
@@ -113,31 +186,37 @@ export default function Body({ children, content }) {
               type="url"
               className="ms-2"
               placeholder="www.seusite.com.br"
+              ref={site}
             />
           </>
         )}
 
         <br />
         <label>E-mail:</label>
-        <input type="email" className="ms-2" placeholder="email@email.com" />
+        <input
+          type="email"
+          className="ms-2"
+          placeholder="email@email.com"
+          ref={email}
+        />
         <br />
 
         <label>CEP:</label>
-        <input type="text" className="ms-6" />
+        <InputMask type="text" className="ms-6" mask="99.999-999" ref={cep} />
 
         <br />
 
         <>
           <label>Endereço:</label>
-          <input type="text" className="ms-2" />
+          <input type="text" className="ms-2" ref={end} />
 
           <label>Número:</label>
-          <input type="text" className="ms-6" />
+          <input type="text" className="ms-6" ref={numEnd} />
         </>
         <br />
 
         <label>Bairro:</label>
-        <input type="text" className="ms-3" />
+        <input type="text" className="ms-3" ref={bairro} />
 
         <label>Estado:</label>
         <select
@@ -168,13 +247,25 @@ export default function Body({ children, content }) {
         <br />
 
         <label>Telefone:</label>
-        <input type="text" className="ms-3" />
+        <InputMask
+          type="text"
+          className="ms-3"
+          mask="(99)99999-9999"
+          ref={tel}
+        />
 
         <label>Celular:</label>
-        <input type="text" className="ms-3" />
+        <InputMask
+          type="text"
+          className="ms-3"
+          mask="(99)99999-9999"
+          ref={cel}
+        />
 
         <div className="btn-form">
-          <button className="ms-3">Cadastrar</button>
+          <button type="submit" className="ms-3">
+            Cadastrar
+          </button>
         </div>
       </form>
     </div>
