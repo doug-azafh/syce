@@ -64,11 +64,8 @@ export default function Body({ children, content }) {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log("aqui");
-    /*
-    e.preventDefault();
-    console.log("aqui");
     await cadFornF(
-      content,
+      1,
       nome.current.value,
       data.current.value,
       cpf.current.value,
@@ -83,7 +80,7 @@ export default function Body({ children, content }) {
       city,
       tel.current.value,
       cel.current.value
-    );*/
+    );
   }
 
   return (
@@ -226,7 +223,7 @@ export default function Body({ children, content }) {
           defaultValue={"Selecione a UF"}
         >
           {listUf.map((a, b) => (
-            <option value={a.id} defaultValue={"Selecione a UF"}>
+            <option value={a.id} defaultValue={"Selecione a UF"} key={a.id}>
               {a.sigla} - {a.nome}
             </option>
           ))}
@@ -239,7 +236,11 @@ export default function Body({ children, content }) {
           defaultValue={"Selecione um cidade"}
         >
           {listCity.map((a, b) => (
-            <option value={a.sigla} defaultValue={"Selecione um cidade"}>
+            <option
+              value={a.sigla}
+              defaultValue={"Selecione um cidade"}
+              key={a.id}
+            >
               {a.nome}
             </option>
           ))}

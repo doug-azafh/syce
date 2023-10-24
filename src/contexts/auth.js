@@ -117,9 +117,7 @@ function AuthProvider({ children }) {
     tel,
     cel
   ) {
-    
     let uid = data.user.uid;
-    console.log("aqui");
     await setDoc(doc(db, "forn", uid), {
       tipo: tipo,
       nome: nome,

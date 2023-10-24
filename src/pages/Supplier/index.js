@@ -7,6 +7,7 @@ export default function Supplier() {
   return (
     <>
       <div>
+        <div className="space"></div>
         <fieldset className="cad">
           <div>
             <legend>Tipo de fornecedor:</legend>
